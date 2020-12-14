@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <button class="set">存储数据</button>
+    <button class="get">获取数据</button>
+    <script>
+        // 获取元素
+        let inp = document.querySelector("input");
+        let setBtn = document.querySelector(".set");
+        let getBtn = document.querySelector(".get");
+        let arr = [
+            { id: 1, name: "xm1", age: 20 },
+            { id: 2, name: "xm2", age: 21 },
+            { id: 3, name: "xm3", age: 22 },
+            { id: 4, name: "xm4", age: 23 },
+        ];
+
+        // sessionStorage的操作
+        // 生名周期：页面或者是浏览器关闭的时候(页面刷新，数据还在)
+
+        // 存储数据
+        setBtn.onclick = function () {
+            // 以下写法虽然可以存，但是丢失了本来的数据信息
+            // localStorage.setItem("data", arr);
+
+            // 正确做法：本地存储只能存字符串，不能直接存储数组或对象，需要数组或对象转json字符串
+            localStorage.setItem("data", JSON.stringify(arr));
+
+        }
+
+        // 获取数据
+        getBtn.onclick = function () {
+            let jsonStr = localStorage.getItem("data");
+            console.log(jsonStr); // json字符串
+            // 还需要将其json.parse() 解析成js对象
+            console.log(JSON.parse(jsonStr)); // js对象
+        }
+
+
+
+    </script>
+</body>
+
+</html>

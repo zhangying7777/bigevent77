@@ -81,7 +81,7 @@ $(function () {
         // 4
         $.ajax({
             type: "POST",
-            url: "http://ajax.frontend.itheima.net/api/reguser",
+            url: "/api/reguser",
             data,
             success: function (res) {
                 console.log(res); // 注册请求是否成功，0：成功；1：失败
@@ -113,7 +113,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: "http://ajax.frontend.itheima.net/api/login",
+            url: "/api/login",
             data,
             success: function (res) {
                 console.log(res);
@@ -127,6 +127,9 @@ $(function () {
 
                 // 跳转页面,原生js跳转  ==> 弹框出现，就跳转了(弹框关闭之后在跳转)
                 // location.href = "/bigevent/home/index.html";
+
+                // 把token (令牌)存储到本地存储中
+                localStorage.setItem("token", res.token);
 
                 // 上面代码的改写
                 layer.msg("登录成功,即将跳转到首页", {
